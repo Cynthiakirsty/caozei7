@@ -4,6 +4,9 @@ import streamlit as st
 
 def get_data():
     df = st.session_state.full_data
+    if df.empty:
+        st.info("当前没有全盘数据。请先前往“Excel 数据上传”页面上传两张数据表。")
+        st.stop()
     with st.sidebar:
         st.divider()
         st.caption("分析日期范围")
@@ -18,7 +21,11 @@ def get_data():
 
 
 def get_user_data():
-    return st.session_state.user_data.copy()
+    df = st.session_state.user_data
+    if df.empty:
+        st.info("当前没有用户明细数据。请先前往“Excel 数据上传”页面上传两张数据表。")
+        st.stop()
+    return df.copy()
 
 
 def money(value): return f"₹{value:,.0f}"

@@ -18,6 +18,8 @@ def blank_template(columns):
 
 st.title("双表数据上传")
 st.caption("全盘数据驱动数据分析；用户明细驱动用户分层与流失预警。两张表需同时上传并通过校验。")
+if st.session_state.full_data.empty and st.session_state.user_data.empty:
+    st.info("当前平台没有载入任何业务数据。上传并校验成功前，其他页面不会展示演示数据或分析结果。")
 left, right = st.columns(2)
 with left:
     st.subheader("① 全盘数据表")
